@@ -1,3 +1,4 @@
+import { CartBadge } from '../components/atoms/CartBadge';
 import { Header } from '../components/organisms/Header';
 import { Navbar } from '../components/organisms/Navbar';
 import type { MainLayoutInterface } from '../interfaces/MainLayoutInterface';
@@ -15,6 +16,7 @@ export const MainLayout: React.FC<MainLayoutInterface> = ({ children  }) => {
             <Header /> 
             <main className="flex-1 pb-2 md:pb-6 background-(--background)">{children}</main>
             <Navbar navLinks={navLinks}/>
+            <CartBadge></CartBadge>
         </div>
     );
 };

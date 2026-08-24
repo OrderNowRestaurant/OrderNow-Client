@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
 import { dishService } from '../services/dishService';
-import type { DishInterface } from '../interfaces/DishInterface';
+import { useQueryParam } from './useQueryParams';
+import type { CategoryWithDishInterface } from '../interfaces/CategoryWithDishInterface';
 
 export const useDishes = () => {
-    const [dishes, setDishes] = useState<DishInterface[]>([]);
+    const [categoryWithDishes, setCategories] = useState<CategoryWithDishInterface[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    const urlParam = useQueryParam("token");
+
     useEffect(() => {
-		dishService.getAll("b9b07bd05fc84599ba74f8ecd07692f7dae201964188a5fa565533e8e4f65405")
+		dishService.getAll(urlParam)
 			.then((data) => {
-				setDishes(data.dishList);
+				setCategories(data.categories);
 			})
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
-    }, [setDishes]);
+    }, [urlParam, setCategories]);
 
-    return { dishes, loading, error };
+    return { categoryWithDishes, loading, error };
 };

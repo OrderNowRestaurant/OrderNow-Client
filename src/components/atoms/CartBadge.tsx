@@ -1,12 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { useOrder } from "../../hooks/useOrder";
+import { useQueryParam } from "../../hooks/useQueryParams";
 
 export const CartBadge = () => {
     const { orderList } = useOrder();
     const totalItems = orderList.reduce((acc, item) => acc + item.quantity, 0);
 
+    const urlParam = useQueryParam("token");
+
+    const navigate = useNavigate(); 
+
+    const handleClick = () => {
+        navigate("/cart/" + "?token=" + urlParam); 
+    };
 
     return (
         <button 
+            onClick={handleClick}
             className="fixed bottom-6 right-6 bg-(--primary) text-white p-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 z-50 cursor-pointer flex items-center justify-center group"
             aria-label="Ver pedido"
         >

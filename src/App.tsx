@@ -9,7 +9,7 @@ import { SendCartBadge } from './components/atoms/SendCartBadge';
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
             <OrderProvider>
                 <MainLayout>
                     <Routes>

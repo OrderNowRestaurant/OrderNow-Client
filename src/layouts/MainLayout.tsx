@@ -6,18 +6,18 @@ import type { NavLinkInterface } from '../interfaces/NavLinkInterface';
 
 
 
-export const MainLayout: React.FC<MainLayoutInterface> = ({ children  }) => {
+export const MainLayout: React.FC<MainLayoutInterface> = ({ children }) => {
     const urlParam = useQueryParam("token");
 
     const navLinks: NavLinkInterface[] = [
-        { navName: 'Inicio', navLink: '/?token=' +  urlParam}
+        { navName: 'Inicio', navLink: '/?token=' + urlParam }
     ];
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <Header /> 
-            <main className="flex-1 pb-2 md:pb-6 background-(--background)">{children}</main>
-            <Navbar navLinks={navLinks}/>
+        <div className="flex min-h-screen flex-col bg-(--background)">
+            <Header />
+            <main className="flex-1 pb-24 md:pb-10">{children}</main>
+            <Navbar navLinks={navLinks} />
         </div>
     );
 };

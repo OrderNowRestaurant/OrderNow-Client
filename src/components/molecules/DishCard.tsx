@@ -4,6 +4,7 @@ import { useOrder } from "../../hooks/useOrder";
 
 export const DishCard: React.FC<DishInterface> = (dish: DishInterface) => {
     const { addToOrder } = useOrder();
+    const categoryLabel = typeof dish.category === "string" ? dish.category : dish.category?.name ?? "Sin categoría";
 
     return (
         <article className="group flex items-center gap-4 rounded-2xl border border-(--border)/10 bg-(--background) p-4 shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(37,99,235,0.12)]">
@@ -11,7 +12,7 @@ export const DishCard: React.FC<DishInterface> = (dish: DishInterface) => {
                 <div className="mb-3 flex items-center justify-between gap-2">
                     <h2 className="text-lg font-bold text-(--primary-text) leading-tight">{dish.name}</h2>
                     <span className="rounded-full bg-(--surface) px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-(--secondary-text)">
-                        {dish.category}
+                        {categoryLabel}
                     </span>
                 </div>
 

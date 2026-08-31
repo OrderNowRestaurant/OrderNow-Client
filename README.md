@@ -1,75 +1,166 @@
-# React + TypeScript + Vite
+# OrderNow Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![alt text](src/assets/logo.png)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A modern web application for ordering food at restaurants through QR code scanning. Built with React, TypeScript, and Vite for optimal performance.
 
-## React Compiler
+## 📋 Table of Contents
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [How It Works](#how-it-works)
+- [Development](#development)
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **QR Code Integration**: Scan restaurant QR codes to access the menu
+- **Real-time Menu**: Browse dishes with live category filtering
+- **Shopping Cart**: Add/remove items with quantity management
+- **Order Management**: View and manage your orders
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Type-Safe**: Built with TypeScript for better code reliability
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React 18** - UI framework
+- **TypeScript** - Type-safe development
+- **Vite** - Next-generation build tool
+- **CSS3** - Styling and responsive design
+- **Context API** - State management
+- **pnpm** - Package manager
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📋 Prerequisites
 
+Before you start, make sure you have installed:
+
+- **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
+- **pnpm** (v8 or higher) - Install with: `npm install -g pnpm`
+
+## 🚀 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd OrderNow-Client
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up environment variables** (if needed)
+   ```bash
+   cp .env.example .env.local
+   ```
+
+## 🎯 Getting Started
+
+### Development Server
+
+Start the development server with hot module replacement:
+
+```bash
+pnpm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The app will be available at `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build for Production
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm run build
+```
+
+### Preview Production Build
+
+```bash
+pnpm run preview
+```
+
+### Linting
+
+```bash
+pnpm run lint
+```
+
+## 📁 Project Structure
 
 ```
+src/
+├── components/          # Reusable UI components
+│   ├── atoms/          # Basic components (CartBadge, etc.)
+│   ├── molecules/      # Composite components (DishCard, etc.)
+│   └── organisms/      # Complex components (Menu, Cart, etc.)
+├── context/            # React Context for state management
+├── hooks/              # Custom React hooks
+├── interfaces/         # TypeScript interfaces & types
+├── layouts/            # Layout components
+├── services/           # API service integration
+├── assets/             # Static assets
+├── App.tsx             # Main app component
+├── main.tsx            # Entry point
+└── index.css           # Global styles
+```
+
+## How It Works
+
+
+### For Customers
+
+1. **Scan QR Code**: Open the app and scan a QR code from a restaurant table
+2. **View Menu**: Browse available dishes organized by categories
+3. **Add to Cart**: Select items and customize your order
+4. **Checkout**: Review your cart and place your order
+
+### Requirements
+
+- Your table must be marked as **OCCUPIED** by the restaurant staff
+- You must be within the restaurant network or QR scan range
+- An active internet connection is required
+
+## 💻 Development
+
+### Project Commands
+
+| Command | Description |
+|---------|-------------|
+| `pnpm run dev` | Start development server |
+| `pnpm run build` | Build for production |
+| `pnpm run preview` | Preview production build |
+| `pnpm run lint` | Run ESLint |
+
+### Key Services
+
+- **categoryService**: Fetch restaurant categories
+- **dishService**: Get dish information and details
+- **orderService**: Handle order creation and management
+- **baseApiService**: Base API communication layer
+
+### Custom Hooks
+
+- `useCategories()`: Fetch and manage categories
+- `useDishes()`: Fetch and manage dishes
+- `useOrder()`: Manage order state and operations
+- `useQueryParams()`: Parse and manage URL query parameters
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+**CC BY-NC 4.0 (Creative Commons Atribución-NoComercial 4.0 Internacional)**
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. You are free to share and adapt this work under the following terms:
+
+- **Attribution**: You must give appropriate credit and indicate if changes were made
+- **Non-Commercial**: You may not use the material for commercial purposes
+- **No Additional Restrictions**: You may not apply legal terms or technological measures that restrict others from doing anything the license permits
+
+For more information, visit: https://creativecommons.org/licenses/by-nc/4.0/

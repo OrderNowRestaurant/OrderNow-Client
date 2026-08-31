@@ -10,7 +10,7 @@ export const Navbar: React.FC<NavInterface> = ({ navLinks }) => {
                     <Link
                         key={link.navName}
                         to={link.navLink}
-                        className="rounded-full px-4 py-3 text-center text-sm font-semibold text-(--secondary-text) transition-all duration-200 hover:bg-(--background) hover:text-(--primary-text)"
+                        className="cursor-pointer rounded-full px-4 py-3 text-center text-sm font-semibold text-(--secondary-text) transition-all duration-200 hover:bg-(--background) hover:text-(--primary-text)"
                     >
                         {link.navName}
                     </Link>

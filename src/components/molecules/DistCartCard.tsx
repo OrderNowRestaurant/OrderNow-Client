@@ -1,52 +1,65 @@
 import { useOrder } from "../../hooks/useOrder";
 import type { DishCartCardProps } from "../../interfaces/DishCartCardProps";
 
-
-
-export const DishCartCard: React.FC<DishCartCardProps> = ({dish, quantity}) => {
-    const { removeFromOrder, plusQuantity, minusQuantity } = useOrder(); 
+export const DishCartCard: React.FC<DishCartCardProps> = ({ dish, quantity }) => {
+    const { removeFromOrder, plusQuantity, minusQuantity } = useOrder();
 
     return (
-        <div className="bg-(--surface) rounded-lg shadow-lg px-5 py-2 grid grid-cols-3">
-            <div className="col-span-2">
-                <div className="gap-2 flex flex-col">
-                    <div className="flex justify-between">
-                        <h1 className="text-md font-bold underline">{dish.name}</h1>
+        <article className="flex items-center gap-4 rounded-2xl border border-(--border)/10 bg-(--background) p-4 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
+            <div className="flex-1 min-w-0">
+                <div className="mb-3 flex items-start justify-between gap-2">
+                    <h2 className="text-lg font-bold text-(--primary-text)">{dish.name}</h2>
+                    <button
+                        type="button"
+                        onClick={() => removeFromOrder(dish)}
+                        className="cursor-pointer text-(--error) transition hover:opacity-80 active:scale-95"
+                        aria-label={`Eliminar ${dish.name}`}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 7l16 0" />
+                            <path d="M10 11l0 6" />
+                            <path d="M14 11l0 6" />
+                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                        </svg>
+                    </button>
+                </div>
+
+                <p className="mb-4 text-sm leading-6 text-(--secondary-text)">{dish.description}</p>
+
+                <div className="flex items-center justify-between gap-3 text-sm text-(--primary-text)">
+                    <div className="flex items-center gap-2 rounded-full bg-(--surface) px-2.5 py-1.5">
+                        <span className="font-medium">Precio</span>
+                        <span className="font-bold text-(--primary)">{dish.price} €</span>
                     </div>
-                    
-                    <h3 className="text-sm text-(--secondary-text) mb-2">{dish.description}</h3>
-                </div>
 
-                <div className="text-sm flex justify-between flex-wrap">
-                    <div>Precio: </div>
-                    <div>{dish.price} €</div>
-                </div>
-
-                <div className="text-sm flex justify-between flex-wrap">
-                    <div>Tiempo estimado: </div>
-                    <div>{dish.time} min</div>
+                    <div className="flex items-center gap-2 rounded-full bg-(--surface) px-2.5 py-1.5">
+                        <span className="font-medium">⏱</span>
+                        <span className="font-semibold">{dish.time} min</span>
+                    </div>
                 </div>
             </div>
 
-            <div className="col-span-1 w-full flex items-center gap-2 grid grid-rows-3">
-                <div className="row-span-1 w-full flex justify-end">
-                    <button onClick={() => removeFromOrder(dish)} className="text-(--error) active:scale-105 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
-                    </button>
-                </div>
-                
-                <div className="row-span-2 w-full flex items-center justify-center gap-1">
-                    <button onClick={() => minusQuantity(dish)} className="py-1 px-3 rounded-full bg-(--primary) text-white cursor-pointer hover:scale-105 active:scale-95">
-                        -
-                    </button>
+            <div className="flex items-center gap-2 rounded-full border border-(--border)/10 bg-(--surface) px-2 py-1.5">
+                <button
+                    type="button"
+                    onClick={() => minusQuantity(dish)}
+                    className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-(--primary) text-lg font-bold text-white transition hover:scale-105 active:scale-95"
+                >
+                    -
+                </button>
 
-                    {quantity}
+                <span className="min-w-6 text-center text-sm font-bold text-(--primary-text)">{quantity}</span>
 
-                    <button onClick={() => plusQuantity(dish)} className="py-1 px-3 rounded-full bg-(--primary) text-white cursor-pointer hover:scale-105 active:scale-95">
-                        +
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    onClick={() => plusQuantity(dish)}
+                    className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-(--primary) text-lg font-bold text-white transition hover:scale-105 active:scale-95"
+                >
+                    +
+                </button>
             </div>
-        </div>
+        </article>
     );
 };

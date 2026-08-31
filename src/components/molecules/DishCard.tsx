@@ -35,7 +35,7 @@ export const DishCard: React.FC<DishInterface> = (dish: DishInterface) => {
                 type="button"
                 onClick={() => addToOrder(dish)}
                 aria-label={`Añadir ${dish.name} al pedido`}
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-(--primary) text-xl font-bold text-white shadow-[0_10px_20px_rgba(37,99,235,0.28)] transition-all duration-200 hover:scale-105 hover:bg-(--secondary) active:scale-95"
+                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-(--primary) text-xl font-bold text-white shadow-[0_10px_20px_rgba(37,99,235,0.28)] transition-all duration-200 hover:scale-105 hover:bg-(--secondary) active:scale-95"
             >
                 +
             </button>

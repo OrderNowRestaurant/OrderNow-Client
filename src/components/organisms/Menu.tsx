@@ -37,7 +37,7 @@ export const Menu = () => {
                     <select
                         value={selectedCategory ?? ""}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="w-full min-w-56 appearance-none rounded-full border border-(--border)/10 bg-(--surface) px-4 py-3 pr-10 text-sm font-medium text-(--primary-text) shadow-[0_6px_18px_rgba(15,23,42,0.06)] outline-none transition focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/20 md:w-auto"
+                        className="w-full min-w-56 cursor-pointer appearance-none rounded-full border border-(--border)/10 bg-(--surface) px-4 py-3 pr-10 text-sm font-medium text-(--primary-text) shadow-[0_6px_18px_rgba(15,23,42,0.06)] outline-none transition focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/20 md:w-auto"
                     >
                         <option value="">Todas las categorías</option>
 
